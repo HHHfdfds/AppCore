@@ -1,0 +1,46 @@
+﻿@model AppCore.Models.ViewModels.EditAccountViewModel
+
+@{
+    Layout = "Admin/_Master";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3>Edit Account</h3>
+    </div>
+    <div class="card-block table-border-style">
+        <div class="table-responsive">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="Account.Id" />
+                <div class="form-group">
+                    <label asp-for="Account.UserName" class="control-label">Username:</label>
+                    <input asp-for="Account.UserName" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Account.FirstName" class="control-label">First Name:</label>
+                    <input asp-for="Account.FirstName" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Account.LastName" class="control-label">Last Name:</label>
+                    <input asp-for="Account.LastName" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Account.PhoneNumber" class="control-label">PhoneNumber:</label>
+                    <input asp-for="Account.PhoneNumber" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="SelectedRoles" class="control-label">Roles:</label>
+                    <select asp-for="SelectedRoles" asp-items="@(new SelectList(Model.Roles))" multiple class="form-control"></select>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Script {
+    <script src="~/admin/js/remove.js"></script>
+    <script>
+        deleteRow("AccountManagement")
+    </script>
+}
